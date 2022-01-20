@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 
-export default function Prepare(props) {
+export default function RecipeDetails(props) {
     const [item,setItem]=useState([])
     useEffect(()=>{
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.setId}`)

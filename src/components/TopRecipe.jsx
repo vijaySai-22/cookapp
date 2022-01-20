@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import Prepare from './Prepare';
+import RecipeDetails from './RecipeDetails';
 
 export default function TopRecipe() {
     const [topItem,setTopItem] = useState([])
@@ -37,6 +37,6 @@ export default function TopRecipe() {
             :<h1>Loading...</h1>
             }
         </div>
-        <Prepare setShow={recipeShow} setId={recipeId}/>
+        <RecipeDetails setShow={recipeShow} setId={recipeId}/>
     </div>;
 }

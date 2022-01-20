@@ -1,5 +1,5 @@
 import React,{ useState,useEffect } from 'react'
-import Prepare from './Prepare';
+import RecipeDetails from './RecipeDetails';
 export default function Recipes() {
     const [recipe, setRecipe] = useState("");
     const [recipeData, setRecipeData] = useState([])
@@ -43,7 +43,7 @@ export default function Recipes() {
                     }
                 </div>
             </div>
-            <Prepare setShow={recipeShow} setId={recipeId}/>
+            <RecipeDetails setShow={recipeShow} setId={recipeId}/>
         </div>
     )
 }
