@@ -1,25 +1,31 @@
 import React,{useEffect,useState} from 'react'
+import {Link} from 'react-router-dom'
+
 import '../App.css'
 export default function Home() {
     const [topCate,setTopCate] = useState([])
-    const [show,setShow] = useState(true)
-    const [id,setId]=useState('52772')
-    const [item,setItem]=useState([])
+    const [topItem,setTopItem] = useState([])
     useEffect(()=>{
         fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`)
         .then(res=>res.json())
         .then(json=>setTopCate(json.categories))
     },[])
     console.log(topCate)
+    let list=[]
+    let id=[52772,52767,53059,52949,53022,52967,53014,52947,52925,52945]
     useEffect(()=>{
-        try {
-            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-            .then(res=>res.json())
-            .then(json=>setItem(json.meals))
-        } catch (error) {
-            console.log(error)
+        async function fetchData(){
+            for (let i=0; i<10; i++) {
+                const res=await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[i]}`)
+                const json=await res.json()
+                list.push(json.meals[0])
+            }
+            console.log(list)
+            setTopItem(list)
         }
-    },[id])
+        fetchData()
+    },[])
+    console.log(topItem)
     return (
         <div style={{marginTop:'70px'}}>
 
@@ -29,54 +35,32 @@ export default function Home() {
                 (topCate)?
                     topCate.map(
                         (e)=>
-                        <div key={Math.random()} className='card'>
-                            <img src={e.strCategoryThumb}></img>
+                        <div className='card' key={Math.random()}>
+                            <img src={e.strCategoryThumb} alt={String(Math.random)}></img>
                             <h2>{e.strCategory}</h2>
                         </div>
+                        
                     )
                 :<h1>none</h1>
             }
             </div>
             <h1>Top Recipes</h1>
-            <h1>Recipe Details</h1>
+            <div className='topReci'>
             {
-                (show && id!=='')?
-                item.map(
+                (topItem.length>5)?
+                topItem.map(
                     (e)=>
-                    <div key={Math.random()}>
-                        <div>
-                            <img src={e.strMealThumb} alt="none" height='200px' />
+                    <Link to="/prepare" id={e.idMeal} key={Math.random()}> 
+                        <div className='card' >
+                            <img src={e.strMealThumb} alt={String(Math.random)}></img>
                             <h2>{e.strMeal}</h2>
-                            <ul>
-                                {((e.strIngredient1)!=='' && (e.strIngredient1)!==null)?<li>{e.strIngredient1} - {e.strMeasure1}</li>:null}
-                                {((e.strIngredient2)!=='' && (e.strIngredient2)!==null)?<li>{e.strIngredient2} - {e.strMeasure2}</li>:null}
-                                {((e.strIngredient3)!=='' && (e.strIngredient3)!==null)?<li>{e.strIngredient3} - {e.strMeasure3}</li>:null}
-                                {((e.strIngredient4)!=='' && (e.strIngredient4)!==null)?<li>{e.strIngredient4} - {e.strMeasure4}</li>:null}
-                                {((e.strIngredient5)!=='' && (e.strIngredient5)!==null)?<li>{e.strIngredient5} - {e.strMeasure5}</li>:null}
-                                {((e.strIngredient6)!=='' && (e.strIngredient6)!==null)?<li>{e.strIngredient6} - {e.strMeasure6}</li>:null}
-                                {((e.strIngredient7)!=='' && (e.strIngredient7)!==null)?<li>{e.strIngredient7} - {e.strMeasure7}</li>:null}
-                                {((e.strIngredient8)!=='' && (e.strIngredient8)!==null)?<li>{e.strIngredient8} - {e.strMeasure8}</li>:null}
-                                {((e.strIngredient9)!=='' && (e.strIngredient9)!==null)?<li>{e.strIngredient9} - {e.strMeasure9}</li>:null}
-                                {((e.strIngredient10)!=='' && (e.strIngredient10)!==null)?<li>{e.strIngredient10} - {e.strMeasure10}</li>:null}
-                                {((e.strIngredient11)!=='' && (e.strIngredient11)!==null)?<li>{e.strIngredient11} - {e.strMeasure11}</li>:null}
-                                {((e.strIngredient12)!=='' && (e.strIngredient12)!==null)?<li>{e.strIngredient12} - {e.strMeasure12}</li>:null}
-                                {((e.strIngredient13)!=='' && (e.strIngredient13)!==null)?<li>{e.strIngredient13} - {e.strMeasure13}</li>:null}
-                                {((e.strIngredient14)!=='' && (e.strIngredient14)!==null)?<li>{e.strIngredient14} - {e.strMeasure14}</li>:null}
-                                {((e.strIngredient15)!=='' && (e.strIngredient15)!==null)?<li>{e.strIngredient15} - {e.strMeasure15}</li>:null}
-                                {((e.strIngredient16)!=='' && (e.strIngredient16)!==null)?<li>{e.strIngredient16} - {e.strMeasure16}</li>:null}
-                                {((e.strIngredient17)!=='' && (e.strIngredient17)!==null)?<li>{e.strIngredient17} - {e.strMeasure17}</li>:null}
-                                {((e.strIngredient18)!=='' && (e.strIngredient18)!==null)?<li>{e.strIngredient18} - {e.strMeasure18}</li>:null}
-                                {((e.strIngredient19)!=='' && (e.strIngredient19)!==null)?<li>{e.strIngredient19} - {e.strMeasure19}</li>:null}
-                                {((e.strIngredient20)!=='' && (e.strIngredient20)!==null)?<li>{e.strIngredient20} - {e.strMeasure20}</li>:null}                            
-                            </ul>
                         </div>
-                        <div>
-                            <p>{e.strInstructions}</p>
-                        </div>
-                    </div>
+                    </Link>
+                    
                 )
-                :null
-            } 
+            :<h1>Loading...</h1>
+            }
+            </div>
         </div>
     )
 }

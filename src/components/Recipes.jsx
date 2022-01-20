@@ -18,7 +18,7 @@ export default function Recipes() {
     return (
         <div>
             <h1>Recipes</h1>
-            <input id='search' type='text' placeholder='Search item name' value={recipe} onChange={handler}/>
+            <input id='search' type='text' placeholder='Search ingredient' value={recipe} onChange={handler}/>
             <ul className='tags'>
                 <li onClick={()=>setRecipe('chicken')}>Chicken</li>
                 <li onClick={()=>setRecipe('egg')}>Egg</li>
@@ -32,7 +32,7 @@ export default function Recipes() {
                         recipeData.slice(0,15).map(
                             (e)=>
                                 <div key={Math.random()} className='cards'>
-                                    <img src={e.strMealThumb}></img>
+                                    <img src={e.strMealThumb} alt={Math.random()}></img>
                                     <h2>{e.strMeal}</h2>
                                 </div>
                         )

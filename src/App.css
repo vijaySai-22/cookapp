@@ -51,6 +51,21 @@
 .card h2{
     text-align: center;
 }
+/* topReci */
+.topReci{
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    overflow-y: hidden;
+}
+.topReci img{
+    width: 240px;
+}
+.topReci a{
+    text-decoration: none;
+    color: black;
+}
 /* search */
 #search{
     width: 35%;
