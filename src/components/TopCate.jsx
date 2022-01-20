@@ -7,7 +7,6 @@ export default function TopCate() {
         .then(res=>res.json())
         .then(json=>setTopCate(json.categories))
     },[])
-    console.log(topCate)
     return <div>
         <h1>Top Categories</h1>
         <div className='cate'>
@@ -21,7 +20,7 @@ export default function TopCate() {
                         </div>
                         
                     )
-                :<h1>none</h1>
+                :null
             }
         </div>
     </div>;

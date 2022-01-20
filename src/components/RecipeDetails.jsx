@@ -3,10 +3,12 @@ import React,{useState,useEffect} from 'react';
 export default function RecipeDetails(props) {
     const [item,setItem]=useState([])
     useEffect(()=>{
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.setId}`)
-        .then(res=>res.json())
-        .then(json=>setItem(json.meals))
-    },[props.setId])
+        if (props.setShow) {
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.setId}`)
+            .then(res=>res.json())
+            .then(json=>setItem(json.meals))   
+        }
+    },[props])
     return <div>
         {
             (props.setShow)?

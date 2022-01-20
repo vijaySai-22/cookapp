@@ -7,20 +7,18 @@ export default function TopRecipe() {
     const [recipeId,setRecipeId]=useState(undefined)
     
     let list=[]
-    let id=[52772,52767,53059,52949,53022,52967,53014,52947,52925,52945]
+    let id=[52772,52767,53059,52949,53014,52947,52925,52945]
     useEffect(()=>{
         async function fetchData(){
-            for (let i=0; i<10; i++) {
+            for (let i=0; i<8; i++) {
                 const res=await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id[i]}`)
                 const json=await res.json()
                 list.push(json.meals[0])
             }
-            console.log(list)
             setTopItem(list)
         }
         fetchData()
     },[])
-    console.log(topItem)
     return <div>
         <h1>Top Recipes</h1>
         <div className='topReci'>
@@ -34,7 +32,7 @@ export default function TopRecipe() {
                     </div>
                     
                 )
-            :<h1>Loading...</h1>
+            :<h1>Fetching Data...</h1>
             }
         </div>
         <RecipeDetails setShow={recipeShow} setId={recipeId}/>
