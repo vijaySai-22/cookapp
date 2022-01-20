@@ -1,8 +1,11 @@
 import React,{ useState,useEffect } from 'react'
-
+import Prepare from './Prepare';
 export default function Recipes() {
     const [recipe, setRecipe] = useState("");
     const [recipeData, setRecipeData] = useState([])
+
+    const [recipeShow,setRecipeShow] = useState(false)
+    const [recipeId,setRecipeId]=useState(undefined)
     const handler = e => {
         setRecipe(e.target.value)
     }
@@ -29,9 +32,9 @@ export default function Recipes() {
                 <div className='blocks'>
                     {
                         (recipeData)?
-                        recipeData.slice(0,15).map(
+                        recipeData.slice(0,10).map(
                             (e)=>
-                                <div key={Math.random()} className='cards'>
+                                <div key={Math.random()} className='cards' onClick={()=>{setRecipeShow(true); setRecipeId(e.idMeal)}}>
                                     <img src={e.strMealThumb} alt={Math.random()}></img>
                                     <h2>{e.strMeal}</h2>
                                 </div>
@@ -40,6 +43,7 @@ export default function Recipes() {
                     }
                 </div>
             </div>
+            <Prepare setShow={recipeShow} setId={recipeId}/>
         </div>
     )
 }
