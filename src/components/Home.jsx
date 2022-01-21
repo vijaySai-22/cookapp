@@ -8,6 +8,8 @@ export default function Home() {
     return (
         <div style={{marginTop:'70px'}}>
             <TopCate/>
+            <br />
+            <hr />
             <TopRecipe/>
         </div>
     )

@@ -35,6 +35,7 @@ export default function TopRecipe() {
             :<h1>Fetching Data...</h1>
             }
         </div>
+        <hr />
         <RecipeDetails setShow={recipeShow} setId={recipeId}/>
     </div>;
 }

@@ -6,10 +6,10 @@ import '../App.css'
 export default function List() {
     return (
         <div className='nav'>
-            <h1>Cook - App</h1>
-            <ul>
-                <Link to="/"> <li>Home</li> </Link>
-                <Link to="/recipes"> <li>Recipes</li> </Link>
+            <ul >
+                <li className='title'>Cook App</li>
+                <li className='tabs'><Link to="/">Home </Link></li>
+                <li className='tabs'><Link to="/recipes">Recipes</Link></li>
             </ul>
         </div>
     )
